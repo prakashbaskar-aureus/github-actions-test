@@ -18,4 +18,4 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
-          gsutil cp model3_notebook.json gs://aureus-bucket/models/model3_notebook/04/model3_notebook.json
+          gsutil cp model3_notebook.json gs://aureus-bucket/models/model3_notebook/04/
