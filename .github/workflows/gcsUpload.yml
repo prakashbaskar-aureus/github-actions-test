@@ -14,15 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Google Cloud SDK
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
-        with:
-          version: '370.0.0'
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          export_default_credentials: false  # Don't export default credentials
+        run: |
+          echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} | base64 --decode > /tmp/keyfile.json
+          gcloud auth activate-service-account --key-file=/tmp/keyfile.json
 
       - name: Upload to GCS
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
           gsutil cp model3_notebook.json gs://aureus-bucket/
