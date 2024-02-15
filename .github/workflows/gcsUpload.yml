@@ -13,9 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Add this step to upload pipeline.json to GCS
+      - name: Set up Google Cloud SDK
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+        with:
+          version: '370.0.0'
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          export_default_credentials: false  # Don't export default credentials
+
       - name: Upload to GCS
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
-          gsutil cp model3_notebook.json gs://aureus-bucket/models/model3_notebook/04/
+          gsutil cp model3_notebook.json gs://aureus-bucket/
