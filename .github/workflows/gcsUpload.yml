@@ -1,0 +1,21 @@
+name: Copy to GCS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy_to_gcs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add this step to upload pipeline.json to GCS
+      - name: Upload to GCS
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        run: |
+          gsutil cp model3_notebook.json gs://aureus-bucket/models/model3_notebook/04/model3_notebook.json
