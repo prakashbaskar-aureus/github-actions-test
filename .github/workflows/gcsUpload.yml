@@ -20,4 +20,4 @@ jobs:
 
       - name: Upload to GCS
         run: |
-          gsutil cp model3_notebook.json gs://aureus-bucket/
+          gsutil cp model3_notebook.json gs://aureus-bucket/githubTest/
