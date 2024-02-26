@@ -1,6 +1,6 @@
 REGION = 'us-central1'
 NOTEBOOK = 'model3_notebook'
-VERSION  = '05'
+VERSION  = '06'
 BQ_DATASET = 'model3'
 BQ_TABLE = 'model3_training'
 BUCKET = "aureus-bucket"
